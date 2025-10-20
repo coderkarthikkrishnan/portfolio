@@ -1,4 +1,4 @@
-﻿@import url('./styles/typography.css');
+@import url('./styles/typography.css');
 
 * {
   margin: 0;
@@ -124,6 +124,13 @@
 
   .section-title {
     margin-bottom: 40px;
+  }
+}
+
+/* When dock nav is hidden on small screens, reduce anchor padding */
+@media (max-width: 640px) {
+  .app {
+    scroll-padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
   }
 }
 
