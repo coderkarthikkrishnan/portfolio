@@ -1,0 +1,41 @@
+.experience .exp-body {
+    color: #cdd6df;
+    font-size: 1.125rem;
+    /* 18px */
+    line-height: 1.85;
+    letter-spacing: 0.2px;
+    white-space: pre-line;
+    /* preserve intended line breaks */
+}
+
+.experience .card {
+    padding: 28px;
+}
+
+.experience-content {
+    padding: 16px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.experience .section-title {
+    position: relative;
+}
+
+.experience .section-title::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 2px;
+    margin: 12px auto 0;
+    background: linear-gradient(90deg, transparent, #8b5cf6, transparent);
+    opacity: 0.7;
+    border-radius: 2px;
+}
+
+@media (max-width: 640px) {
+    .experience .exp-body {
+        font-size: 1.0625rem;
+        /* 17px on small screens */
+        line-height: 1.8;
+    }
+}

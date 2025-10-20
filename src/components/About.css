@@ -1,0 +1,42 @@
+.about .about-body {
+    color: #cdd6df;
+    font-size: 1.125rem;
+    /* 18px */
+    line-height: 1.85;
+    letter-spacing: 0.2px;
+    white-space: pre-line;
+    /* keep paragraph breaks readable */
+}
+
+.about .card {
+    padding: 28px;
+}
+
+.about-content {
+    padding: 16px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Subtle gradient divider under the title */
+.about .section-title {
+    position: relative;
+}
+
+.about .section-title::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 2px;
+    margin: 12px auto 0;
+    background: linear-gradient(90deg, transparent, #8b5cf6, transparent);
+    opacity: 0.7;
+    border-radius: 2px;
+}
+
+@media (max-width: 640px) {
+    .about .about-body {
+        font-size: 1.0625rem;
+        /* 17px */
+        line-height: 1.8;
+    }
+}

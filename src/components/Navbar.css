@@ -1,0 +1,123 @@
+﻿/* Dock-style bottom navbar (vanilla CSS) */
+.dock-wrapper {
+  position: fixed;
+  bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.dock {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  padding: 10px 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  pointer-events: auto;
+}
+
+.dock-menu {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0 6px;
+}
+
+.dock-separator {
+  width: 1px;
+  height: 46px;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+}
+
+.dock-item {
+  position: relative;
+  transition: transform 0.2s ease, margin 0.2s ease;
+}
+
+/* Create space around the hovered item so the enlarged circle has room */
+.dock-item:hover {
+  margin: 0 6px;
+  /* adds space to left and right while hovered */
+  z-index: 2;
+  /* ensure it sits above neighbors */
+}
+
+.dock-icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  color: #e5e7eb;
+  text-decoration: none;
+  background: transparent;
+  /* no default circle */
+  border: 1px solid transparent;
+  /* keep size, hide border */
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Only the hovered item pops as a circle */
+.dock-item:hover .dock-icon {
+  transform: scale(1.35);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+  /* single circle on hover */
+  border-color: transparent;
+  /* avoid visible ring */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  /* no outer halo */
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 58px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 10px;
+  font-size: 12px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.dock-item:hover .tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-2px);
+}
+
+/* Ensure content isn't covered by dock */
+body,
+.app {
+  padding-bottom: calc(110px + env(safe-area-inset-bottom, 0px));
+}
+
+@media (max-width: 640px) {
+  .dock {
+    padding: 8px 10px;
+  }
+
+  .dock-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .dock-separator {
+    height: 40px;
+  }
+}

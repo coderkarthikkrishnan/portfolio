@@ -1,0 +1,17 @@
+.rich-body {
+    color: #cdd6df;
+    font-size: 1.125rem;
+    /* 18px */
+    line-height: 1.85;
+    letter-spacing: 0.2px;
+    white-space: pre-line;
+    /* preserve paragraph breaks */
+}
+
+@media (max-width: 640px) {
+    .rich-body {
+        font-size: 1.0625rem;
+        /* 17px */
+        line-height: 1.8;
+    }
+}
