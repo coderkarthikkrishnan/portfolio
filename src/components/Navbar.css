@@ -1,4 +1,4 @@
-﻿/* Dock-style bottom navbar (vanilla CSS) */
+/* Dock-style bottom navbar (vanilla CSS) */
 .dock-wrapper {
   position: fixed;
   bottom: calc(18px + env(safe-area-inset-bottom, 0px));
@@ -119,5 +119,100 @@ body,
 
   .dock-separator {
     height: 40px;
+  }
+}
+
+/* Smaller phones */
+@media (max-width: 480px) {
+  .dock {
+    gap: 8px;
+    padding: 6px 8px;
+    border-radius: 16px;
+  }
+
+  .dock-menu {
+    gap: 6px;
+    padding: 0 4px;
+  }
+
+  .dock-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .dock-item:hover {
+    margin: 0 4px;
+  }
+
+  .dock-item:hover .dock-icon {
+    transform: scale(1.25);
+  }
+
+  .dock-separator {
+    height: 34px;
+  }
+
+  .tooltip {
+    bottom: 50px;
+    font-size: 11px;
+    padding: 5px 8px;
+  }
+
+  body,
+  .app {
+    padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* Ultra-small devices */
+@media (max-width: 360px) {
+  .dock {
+    gap: 6px;
+    padding: 6px;
+  }
+
+  .dock-menu {
+    gap: 4px;
+    padding: 0 2px;
+  }
+
+  .dock-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .dock-item:hover {
+    margin: 0 3px;
+  }
+
+  .dock-item:hover .dock-icon {
+    transform: scale(1.2);
+  }
+
+  .dock-separator {
+    height: 30px;
+  }
+
+  .tooltip {
+    bottom: 46px;
+    font-size: 10.5px;
+  }
+
+  body,
+  .app {
+    padding-bottom: calc(90px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* Final mobile override: hide dock entirely on small screens */
+@media (max-width: 640px) {
+  .dock-wrapper {
+    display: none;
+  }
+
+  /* Reclaim space since dock is hidden */
+  body,
+  .app {
+    padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
   }
 }
