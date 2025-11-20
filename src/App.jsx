@@ -1,24 +1,38 @@
-﻿import React from 'react'
+import { useState } from 'react'
 import './App.css'
-import Navbar from './components/Navbar.jsx'
-import Hero from './components/Hero.jsx'
-import About from './components/About.jsx'
-import Skills from './components/Skills.jsx'
-import Projects from './components/Projects.jsx'
-import Experience from './components/Experience.jsx'
-import Contact from './components/Contact.jsx'
-import Footer from './components/Footer.jsx'
+import Header from './components/Header'
+import Hero from './components/Hero'
+import Certifications from './components/Certifications'
+import About from './components/About'
+import Services from './components/Services'
+import Testimonials from './components/Testimonials'
+import Achievements from './components/Achievements'
+import Contact from './components/Contact'
+import Footer from './components/Footer'
 
 function App() {
+  // Path to the local image in public folder
+  const heroImage = "/Group 1.png"
+  const aboutImage = "/img200 1.png"
+
   return (
-    <div className="app">
-      <Navbar />
-      <Hero />
-      <About />
-      <Skills />
-      <Experience />
-      <Projects />
-      <Contact />
+    <div className="font-sans">
+      <Header profileImage={aboutImage} />
+      <div id="home">
+        <Hero heroImage={heroImage} />
+      </div>
+      <Certifications />
+      <div id="about">
+        <About aboutImage={aboutImage} />
+      </div>
+      <div id="services">
+        <Services />
+      </div>
+      <Testimonials />
+      <Achievements />
+      <div id="contact">
+        <Contact />
+      </div>
       <Footer />
     </div>
   )

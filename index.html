@@ -3,76 +3,69 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0a0a0a" />
-  <title>Karthik Krishnan GS — Web Developer</title>
-  <meta name="description"
-    content="Portfolio of Karthik Krishnan GS — Web Developer. Projects, skills, and experience in modern web development." />
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Karthik Krishnan GS — Web Developer" />
-  <meta property="og:description" content="Projects, skills, and experience in modern web development." />
-  <meta property="og:url" content="https://www.karthikkrishnan.dev/" />
-  <meta property="og:image" content="/og-image.jpeg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:type" content="image/jpeg" />
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Karthik Krishnan GS — Web Developer" />
-  <meta name="twitter:description" content="Projects, skills, and experience in modern web development." />
-  <meta name="twitter:image" content="/og-image.jpeg" />
-  <!-- No Twitter account provided: removed twitter:site and twitter:creator -->
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
-
-  <!-- Favicon / manifest -->
-  <!-- For production place a favicon at /favicon.jpeg (copy src/assets/img200.jpeg -> public/favicon.jpeg) -->
-  <link rel="icon" type="image/jpeg" href="/favicon.png" />
-  <link rel="apple-touch-icon" href="/favicon.png" />
-  <link rel="manifest" href="/manifest.json" />
-
-  <!-- SEO: canonical, robots -->
-
-  <link rel="canonical" href="https://www.karthikkrishnan.dev/" />
-  <meta name="robots" content="index, follow" />
-  <meta name="keywords" content="Karthik Krishnan GS, web developer, portfolio, React, Vite, JavaScript, frontend" />
-
-  <!-- Structured data: Person (replace URLs and sameAs links with your profiles) -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Karthik Krishnan GS",
-      "jobTitle": "Web Developer",
-      "url": "https://www.karthikkrishnan.dev/",
-      "sameAs": [
-        "https://github.com/Coderkarthik01",
-        "https://www.linkedin.com/in/your-profile"
-      ]
-    }
-  </script>
-
-  <!-- Optional: Organization schema for search engines (company / personal brand) -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Karthik Krishnan GS",
-      "url": "https://www.karthikkrishnan.dev/",
-      "logo": "https://www.karthikkrishnan.dev/favicon.jpeg"
-    }
-  </script>
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-site-verification" content="LoQsFNU7d8SUUMDVoBc9p_emQtsrUoAQfIIUobyHmks" />
+  <title>Karthik - Portfolio</title>
 </head>
 
 <body>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
+  </script>
+
+  <!-- Enhanced contact form script (replaces old listeners) -->
+  <script>
+    (function () {
+      const oldForm = document.getElementById('contact-form');
+      const statusEl = document.getElementById('form-status');
+      const submitBtn = document.getElementById('submit');
+      if (!oldForm) return;
+
+      // Replace form with a clean clone to remove previous listeners
+      const newForm = oldForm.cloneNode(true);
+      oldForm.parentNode.replaceChild(newForm, oldForm);
+
+      const SCRIPT_URL = 'https://script.google.com/macros/s/REPLACE_WITH_YOUR_ID/exec';
+
+      function clearErrors() { ['name', 'email', 'phone', 'message'].forEach(id => { const e = document.getElementById(id + '-error'); if (e) e.textContent = '' }); if (statusEl) { statusEl.textContent = ''; statusEl.className = ''; } }
+      function showError(id, msg) { const e = document.getElementById(id + '-error'); if (e) e.textContent = msg }
+      function focusFirstError() { const ids = ['name', 'email', 'phone', 'message']; for (const id of ids) { const e = document.getElementById(id + '-error'); if (e && e.textContent.trim()) { const f = document.getElementById(id); if (f) f.focus(); break; } } }
+
+      newForm.addEventListener('submit', async function (e) {
+        e.preventDefault(); clearErrors();
+        const name = (newForm.name && newForm.name.value || '').trim();
+        const email = (newForm.email && newForm.email.value || '').trim();
+        const phone = (newForm.phone && newForm.phone.value || '').trim();
+        const message = (newForm.message && newForm.message.value || '').trim();
+
+        let valid = true;
+        if (name.length < 2) { showError('name', 'Please enter your name'); valid = false }
+        if (!/^\S+@\S+\.\S+$/.test(email)) { showError('email', 'Please enter a valid email'); valid = false }
+        if (!/^[0-9]{10}$/.test(phone)) { showError('phone', 'Enter a 10-digit phone number'); valid = false }
+        if (message.length < 6) { showError('message', 'Message is too short'); valid = false }
+        if (!valid) { focusFirstError(); return }
+
+        if (SCRIPT_URL.includes('REPLACE_WITH_YOUR_ID')) { if (statusEl) { statusEl.textContent = 'Form not configured — set SCRIPT_URL in the script.'; statusEl.className = 'errors' }; return }
+
+        if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending...' }
+        if (statusEl) { statusEl.textContent = 'Sending...'; statusEl.className = 'muted' }
+
+        const payload = { name, email, phone, message, timestamp: new Date().toISOString() }
+
+        try {
+          const res = await fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+          if (res && res.ok) { if (statusEl) { statusEl.textContent = 'Message sent — thank you!'; statusEl.className = 'success' }; newForm.reset(); }
+          else {
+            // try no-cors fallback
+            try { await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) }); if (statusEl) { statusEl.textContent = 'Message sent (no-cors fallback). Check deployment.'; statusEl.className = 'success' }; newForm.reset(); }
+            catch (inner) { if (statusEl) { statusEl.textContent = 'Failed to send; server error or CORS.'; statusEl.className = 'errors' }; console.error(inner) }
+          }
+        } catch (err) { if (statusEl) { statusEl.textContent = 'Network or CORS error. Check script URL and deployment.'; statusEl.className = 'errors' }; console.error(err) }
+        finally { if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Send' } }
+      });
+    })();
+  </script>
 </body>
 
 </html>
